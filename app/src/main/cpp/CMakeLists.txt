@@ -25,12 +25,27 @@ project("hellondk")
 # for GameActivity/NativeActivity derived applications, the same library name must be
 # used in the AndroidManifest.xml file.
 
+# CMAKE 启用详细输出模式
 set(CMAKE_VERBOSE_MAKEFILE on)
 # set() 来设置一个路径全局变量 distribution_DIR
 set(distribution_DIR ${CMAKE_SOURCE_DIR}/../../../../libBuild)
 
+# message( [STATUS|WARNING|AUTHOR_WARNING|FATAL_ERROR|SEND_ERROR]
+#  "message to display" ...)
+# (无) = 重要消息；
+# STATUS = 非重要消息；
+# WARNING = CMake 警告, 会继续执行；
+# AUTHOR_WARNING = CMake 警告 (dev), 会继续执行；
+# SEND_ERROR = CMake 错误, 继续执行，但是会跳过生成的步骤；
+# FATAL_ERROR = CMake 错误, 终止所有处理过程；
+# 原文链接：https://blog.csdn.net/hp_cpp/article/details/110373926
+
+# /Users/wangtao/Documents/projects/hello_ndk/app/src/main/cpp
 message(WARNING ${CMAKE_SOURCE_DIR})
+# /Users/wangtao/Documents/projects/hello_ndk/app/src/main/cpp/../../../../libBuild
 message(WARNING ${distribution_DIR})
+# /Users/wangtao/Documents/projects/hello_ndk/app/src/main/cpp
+message(WARNING ${PROJECT_SOURCE_DIR})
 
 # 创建总的库native-lib并链接一个.cpp文件，可以直接引用第三方库的头文件
 # SHARED : 编译成动态 so 库, 需要通过 System.loadLibrary() 加载; STATIC : 编译成静态库, 需要链接到 APK 中
