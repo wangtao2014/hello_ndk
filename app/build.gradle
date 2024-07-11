@@ -30,24 +30,26 @@ android {
     }
     // 如果引入的是带 JNI 接口的 so 文件，不需要 cmake 文件，需要注意的是函数路径一致
     // 引用jni格式so不需要cmake文件, 如果有 cmake 文件，则 jniLibs 不生效
+    // ref: https://blog.csdn.net/ma598214297/article/details/78387847#2.1%20%E6%9E%84%E5%BB%BA%E6%94%AF%E6%8C%81C%2FC%2B%2B%E7%9A%84%E5%B7%A5%E7%A8%8B%E3%80%82
 
-    // externalNativeBuild {
-    //   cmake {
-    //        path file('src/main/cpp/CMakeLists.txt')
-    //        version '3.22.1'
-    //     }
-    // }
+     externalNativeBuild {
+       cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version '3.22.1'
+         }
+     }
 
     buildFeatures {
         viewBinding true
     }
 
     // jni so 文件默认路径是 src/main/jniLibs 目录，如果是其他路径，需要在下面注明
-    // 路径配置 src/main/jniLibs or lib or src/main/cpp/libs
+    // 路径配置 src/main/jniLibs or libBuild or src/main/cpp/libs
+    // 这里只需要配置动态库，静态库不需要，直接打到二进制中
 
     sourceSets {
         main {
-            jniLibs.srcDirs = ['lib']
+            jniLibs.srcDirs = ['../libBuild/two/lib']
         }
     }
 }
