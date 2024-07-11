@@ -28,14 +28,27 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    externalNativeBuild {
-        cmake {
-            path file('src/main/cpp/CMakeLists.txt')
-            version '3.22.1'
-        }
-    }
+    // 如果引入的是带 JNI 接口的 so 文件，不需要 cmake 文件，需要注意的是函数路径一致
+    // 引用jni格式so不需要cmake文件, 如果有 cmake 文件，则 jniLibs 不生效
+
+    // externalNativeBuild {
+    //   cmake {
+    //        path file('src/main/cpp/CMakeLists.txt')
+    //        version '3.22.1'
+    //     }
+    // }
+
     buildFeatures {
         viewBinding true
+    }
+
+    // jni so 文件默认路径是 src/main/jniLibs 目录，如果是其他路径，需要在下面注明
+    // 路径配置 src/main/jniLibs or lib or src/main/cpp/libs
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['lib']
+        }
     }
 }
 
