@@ -45,7 +45,7 @@ android {
 
     // jni so 文件默认路径是 src/main/jniLibs 目录，如果是其他路径，需要在下面注明
     // 路径配置 src/main/jniLibs or libBuild or src/main/cpp/libs
-    // 这里只需要配置动态库，静态库不需要，直接打到二进制中
+    // 这里只需要配置动态库，静态库不需要，直接打到二进制中, 不会出现在apk 的lib包中
 
     sourceSets {
         main {
