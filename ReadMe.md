@@ -8,3 +8,7 @@ nm -D liblistdevs.so > listdevs.txt
 set(my_lib_path ${CMAKE_SOURCE_DIR}/../../../libs/${ANDROID_ABI} )
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -L${my_lib_path}")
 原文链接：https://blog.csdn.net/ma598214297/article/details/78387847
+
+## SHARED VS STATIC 
+SHARED : 编译成动态 so 库, 需要通过 System.loadLibrary() 加载; 
+STATIC : 编译成静态库, 需要链接到 APK 中
