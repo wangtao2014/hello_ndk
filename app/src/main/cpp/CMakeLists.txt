@@ -40,14 +40,14 @@ set(distribution_DIR ${CMAKE_SOURCE_DIR}/../../../../libBuild)
 # FATAL_ERROR = CMake 错误, 终止所有处理过程；
 # 原文链接：https://blog.csdn.net/hp_cpp/article/details/110373926
 
-# /Users/wangtao/Documents/projects/hello_ndk/app/src/main/cpp
+# /Users/xxx/Documents/projects/hello_ndk/app/src/main/cpp
 message(WARNING ${CMAKE_SOURCE_DIR})
-# /Users/wangtao/Documents/projects/hello_ndk/app/src/main/cpp/../../../../libBuild
+# /Users/xxx/Documents/projects/hello_ndk/app/src/main/cpp/../../../../libBuild
 message(WARNING ${distribution_DIR})
-# /Users/wangtao/Documents/projects/hello_ndk/app/src/main/cpp
+# /Users/xxx/Documents/projects/hello_ndk/app/src/main/cpp
 message(WARNING ${PROJECT_SOURCE_DIR})
 
-# 创建总的库native-lib并链接一个.cpp文件，可以直接引用第三方库的头文件
+# 创建总的库 CMAKE_PROJECT_NAME 并链接一个.cpp文件，可以直接引用第三方库的头文件
 # SHARED : 编译成动态 so 库, 需要通过 System.loadLibrary() 加载; STATIC : 编译成静态库, 需要链接到 APK 中
 add_library(${CMAKE_PROJECT_NAME} SHARED
         # List C/C++ source files with relative paths to this CMakeLists.txt.
