@@ -84,5 +84,5 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
         android
         log)
 
-# 调用指定目录下的 CMakeLists.txt
+# 调用指定目录下的 CMakeLists.txt, 可以生成多个 so 文件
 # add_subdirectory(src/main/cpp/mbedtls)
