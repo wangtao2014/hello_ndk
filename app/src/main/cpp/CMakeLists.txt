@@ -66,6 +66,13 @@ set_target_properties(lib_a PROPERTIES IMPORTED_LOCATION ${distribution_DIR}/one
 add_library(lib_so SHARED IMPORTED)
 set_target_properties(lib_so PROPERTIES IMPORTED_LOCATION ${distribution_DIR}/two/lib/${ANDROID_ABI}/liblib_so.so)
 
+# 查找系统库，并起别名
+# /Users/xxx/Library/Android/sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/aarch64-linux-android/24/libandroid.so
+find_library(log-lib log)
+find_library(android-lib android)
+message(WARNING ${log-lib})
+message(WARNING ${android-lib})
+
 # Specifies libraries CMake should link to your target library. You
 # can link libraries from various origins, such as libraries defined in this
 # build script, prebuilt third-party libraries, or Android system libraries.
