@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         adapter = new MsgAdapter(msgList);
 
+        layoutManager.setStackFromEnd(true); // 列表再底部开始展示，反转后由上面开始展示
+        // layoutManager.setReverseLayout(true); // 列表翻转
         msgRecyclerView.setLayoutManager(layoutManager);
         msgRecyclerView.setAdapter(adapter);
 
