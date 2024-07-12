@@ -76,9 +76,13 @@ message(WARNING ${android-lib})
 # Specifies libraries CMake should link to your target library. You
 # can link libraries from various origins, such as libraries defined in this
 # build script, prebuilt third-party libraries, or Android system libraries.
+# 关联我们自己的库和一些预编译的第三方库或 Android 系统库
 target_link_libraries(${CMAKE_PROJECT_NAME}
         # List libraries link to the target library
         lib_a
         lib_so
         android
         log)
+
+# 调用指定目录下的 CMakeLists.txt
+# add_subdirectory(src/main/cpp/mbedtls)
