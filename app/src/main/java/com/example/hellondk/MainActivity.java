@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         send = binding.send;
 
         layoutManager = new LinearLayoutManager(this);
-        adapter = new MsgAdapter(msgList = getData());
+        adapter = new MsgAdapter(msgList);
 
         msgRecyclerView.setLayoutManager(layoutManager);
         msgRecyclerView.setAdapter(adapter);
@@ -56,16 +57,26 @@ public class MainActivity extends AppCompatActivity {
                     adapter.notifyItemInserted(msgList.size() - 1);
                     msgRecyclerView.scrollToPosition(msgList.size() - 1);
                     inputText.setText("");
-                }
-                if(msgList.size() == 2) {
-                    msgList.add(new Message("What's your name?", Message.TYPE_RECEIVED));
-                    adapter.notifyItemInserted(msgList.size() - 1);
-                    msgRecyclerView.scrollToPosition(msgList.size() - 1);
-                }
-                if(msgList.size() == 4) {
-                    msgList.add(new Message("Nice to meet you,Bye!", Message.TYPE_RECEIVED));
-                    adapter.notifyItemInserted(msgList.size() - 1);
-                    msgRecyclerView.scrollToPosition(msgList.size() - 1);
+
+                    // start a new thread
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(500);
+                                msgList.add(new Message(stringFromJNI(), Message.TYPE_RECEIVED));
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        adapter.notifyItemInserted(msgList.size() - 1);
+                                        msgRecyclerView.scrollToPosition(msgList.size() - 1);
+                                    }
+                                });
+                            } catch (InterruptedException e) {
+                                Log.d(TAG, "InterruptedException: " + e);
+                            }
+                        }
+                    }).start();
                 }
             }
         });
@@ -78,10 +89,4 @@ public class MainActivity extends AppCompatActivity {
     public native String stringFromJNI();
 
     public native String stringFromJNI2();
-
-    private List<Message> getData(){
-        List<Message> list = new ArrayList<>();
-        list.add(new Message("Hello", Message.TYPE_RECEIVED));
-        return list;
-    }
 }
