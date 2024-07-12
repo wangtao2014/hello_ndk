@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             try {
                                 Thread.sleep(500);
-                                msgList.add(new Message(stringFromJNI(), Message.TYPE_RECEIVED));
+                                msgList.add(new Message("这应该是 ChatGLM 回复的内容: " + stringFromJNI(), Message.TYPE_RECEIVED));
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
