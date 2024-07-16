@@ -2,6 +2,7 @@
   <dictionary name="wangtao">
     <words>
       <w>hellondk</w>
+      <w>mbedtls</w>
     </words>
   </dictionary>
 </component>

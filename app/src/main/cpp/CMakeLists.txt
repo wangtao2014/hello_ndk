@@ -30,8 +30,7 @@ set(CMAKE_VERBOSE_MAKEFILE on)
 # set() 来设置一个路径全局变量 distribution_DIR
 set(distribution_DIR ${CMAKE_SOURCE_DIR}/../../../../libBuild)
 
-# message( [STATUS|WARNING|AUTHOR_WARNING|FATAL_ERROR|SEND_ERROR]
-#  "message to display" ...)
+# message( [STATUS|WARNING|AUTHOR_WARNING|FATAL_ERROR|SEND_ERROR] "message to display" ...)
 # (无) = 重要消息；
 # STATUS = 非重要消息；
 # WARNING = CMake 警告, 会继续执行；
